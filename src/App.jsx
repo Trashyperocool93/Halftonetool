@@ -1,4 +1,4 @@
-\f0\fs24 \cf0 import React, \{ useState, useRef, useEffect, useCallback \} from 'react';\
+import React, \{ useState, useRef, useEffect, useCallback \} from 'react';\
 import \{ Upload, Download, RefreshCw, Layers, Move, Palette, Zap, Image as ImageIcon, Share2, FolderInput, CheckCircle2 \} from 'lucide-react';\
 \
 // --- UI Components ---\
