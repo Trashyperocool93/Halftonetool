@@ -1,1 +1,1 @@
-This Halftone tool made bye Trashyperocool
+This Halftone tool made by Trashyperocool
