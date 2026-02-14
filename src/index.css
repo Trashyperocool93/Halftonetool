@@ -2,29 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Scrollbar for the sidebar */
+/* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #0f172a; 
+  background: transparent; 
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #334155; 
-  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.05); 
+  border-radius: 10px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #475569; 
+  background: rgba(255, 255, 255, 0.1); 
 }
 
-/* Checkerboard pattern for transparency */
-.checkerboard-bg {
-  background-color: #020617; /* Very dark slate */
-  background-image:
-    linear-gradient(45deg, #0f172a 25%, transparent 25%),
-    linear-gradient(-45deg, #0f172a 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #0f172a 75%),
-    linear-gradient(-45deg, transparent 75%, #0f172a 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #050505;
+}
+
+/* Global Font Lock - Fixes dropdowns and inputs */
+* {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif !important;
+}
+
+.font-mono, .font-mono * {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
 }
