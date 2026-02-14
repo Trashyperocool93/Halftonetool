@@ -19,9 +19,8 @@ const GlassCard = ({ children, className = "" }) => (
   </div>
 );
 
-// Updated Slider to accept custom className for width control
-const Slider = ({ label, value, min, max, step, onChange, unit = "", className = "mb-6" }) => (
-  <div className={`${className} group font-sans`}>
+const Slider = ({ label, value, min, max, step, onChange, unit = "", compact = false }) => (
+  <div className={`${compact ? 'w-40' : 'mb-6'} group font-sans`}>
     <div className="flex justify-between mb-2">
       <label className="text-[10px] font-black text-neutral-500 uppercase tracking-[0.2em] group-hover:text-neutral-300 transition-colors truncate">{label}</label>
       <span className="text-[10px] font-mono text-white/40">{value}{unit}</span>
@@ -365,17 +364,36 @@ const App = () => {
                              maxLength={7}
                            />
                         </div>
-                        <div className="flex items-center space-x-2 font-sans">
-                          <span className="text-[7px] text-neutral-500 uppercase font-black">Size</span>
-                          <input 
-                            type="range" 
-                            min="0" max="40" 
-                            value={config.quadSizes[idx]} 
-                            onChange={(e) => updateQuadConfig(idx, 'quadSizes', parseFloat(e.target.value))} 
-                            className="flex-1 h-[1px] bg-white/10 accent-white appearance-none cursor-pointer" 
-                          />
-                          <span className="text-[8px] font-mono text-neutral-400 w-3 text-right">{config.quadSizes[idx]}</span>
+                        
+                        <div className="space-y-2">
+                          {/* Size Control */}
+                          <div className="flex items-center space-x-2 font-sans">
+                            <span className="text-[7px] text-neutral-500 uppercase font-black">Size</span>
+                            <input 
+                              type="range" 
+                              min="0" max="40" 
+                              value={config.quadSizes[idx]} 
+                              onChange={(e) => updateQuadConfig(idx, 'quadSizes', parseFloat(e.target.value))} 
+                              className="flex-1 h-[1px] bg-white/10 accent-white appearance-none cursor-pointer" 
+                            />
+                            <span className="text-[8px] font-mono text-neutral-400 w-3 text-right">{config.quadSizes[idx]}</span>
+                          </div>
+
+                          {/* Line Control (RESTORED) */}
+                          <div className="flex items-center space-x-2 font-sans">
+                            <span className="text-[7px] text-neutral-500 uppercase font-black">Line</span>
+                            <input 
+                              type="range" 
+                              min="0" max="1" 
+                              step="0.05"
+                              value={config.quadShapes[idx]} 
+                              onChange={(e) => updateQuadConfig(idx, 'quadShapes', parseFloat(e.target.value))} 
+                              className="flex-1 h-[1px] bg-white/10 accent-white appearance-none cursor-pointer" 
+                            />
+                            <span className="text-[8px] font-mono text-neutral-400 w-3 text-right">{(config.quadShapes[idx] * 10).toFixed(0)}</span>
+                          </div>
                         </div>
+
                       </div>
                     </div>
                   ))}
@@ -483,13 +501,34 @@ const App = () => {
       </div>
       
       <style>{`
-        /* Specific override for range slider thumb to maintain glassmorphism */
+        /* Aggressive global font lock for browser widgets */
+        * { 
+          font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif !important; 
+        }
+        
+        /* Exception for mono-font elements */
+        .font-mono, .font-mono * {
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.1); }
+        
         input[type=range]::-webkit-slider-thumb {
           -webkit-appearance: none;
           height: 12px; width: 12px;
           border-radius: 50%; background: #fff;
           cursor: pointer; box-shadow: 0 0 10px rgba(255,255,255,0.4);
           border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* Fix for native dropdown menus font */
+        select, option {
+          font-family: inherit !important;
+          text-transform: uppercase !important;
+          letter-spacing: 0.1em !important;
         }
       `}</style>
     </div>
