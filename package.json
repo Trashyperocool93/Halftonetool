@@ -1,5 +1,5 @@
 {
-  "name": "halftone-poster-tool",
+  "name": "dotter-v3",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -11,6 +11,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "three": "^0.160.0",
     "lucide-react": "^0.263.1",
     "clsx": "^2.0.0",
     "tailwind-merge": "^1.14.0"
